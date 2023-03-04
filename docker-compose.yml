@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  torblock:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+    - .:/torblock
+    environment:
+      FLASK_APP: torblock.py
+    command: python3 torblock.py
+    dependfs_on:
+      -db
+  db:
+    image: sqlite3
+    environment:
+      - SQLITE_DATABASE=ip_addresses.db
+    volumes:
+      - ./
+      
