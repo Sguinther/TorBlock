@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid white;
+            font-size: 15px;
+            padding: 3px;
+            color: white;
+            
+        }
+
+        .divscroll{
+            height:100px;
+            width:150px;
+            overflow:scroll;
+        }
+        body {
+            background-color: black;
+        }
+        h1 {
+            color: white;
+        
+        }
+        h3 {
+            color: white;
+        
+        }
+        form, label {
+            color: white;
+        }
+        .middle{
+            justify-content: center;
+            padding:auto;
+            align-items: center;
+            width:50%;
+            margin: auto;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="middle">
+    <h1>TOR Node Exclusion Control</h1>
+    <br>
+    
+   <h3>Add IP to Exclusion List</h1>
+        <form action="{{ url_for('add_ip')}}" method="post">
+            <label for="add_ip_address">IP Address:</label>
+            <input type="text" id="add_ip_address" name="ip_address">
+            <br><br>
+            <input type="submit" value="Add">
+        </form>
+        <br>
+    <h3>Delete IP From Exclusion List</h3>
+        <form action="{{ url_for('delete_ip')}}" method="post">
+            <label for="delete_ip_address">IP Address:</label>
+            <input type="text" id="delete_ip_address" name="ip_address">
+            <br><br>
+            <input type="submit" value="Delete">
+        </form>
+        <br>
+        <div style="overflow:auto;">
+        <table class='table1'>
+            <tr>
+                <th>EXCLUDED IPs</th>
+                
+                
+            </tr>
+            
+            {% for ip1 in ips1 %}
+            <tr>
+                <td>{{ip1}}</td>
+                    
+                    
+            </tr>
+            {% endfor %}
+             
+          
+            </table>
+        </div>
+            <br>
+            <br>
+            <br>
+
+    <table class='table1'>
+        <tr>
+            <th>TOR NODE IP</th>
+            
+            
+        </tr>
+        
+        {% for ip in ips %}
+        <tr>
+            <td>{{ip}}</td>
+                
+                
+        </tr>
+        {% endfor %}
+         
+      
+        </table>
+        <br>
+        <br>
+        <br>
+
+    </div>
+
+
+</body>
+</html>
